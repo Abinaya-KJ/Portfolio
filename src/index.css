@@ -1,0 +1,650 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Light Mode (User Requested Palette) */
+  --bg-main: #b8c1ec;
+  /* Pastel Lavender */
+  --text-main: #121629;
+  /* Charcoal / Near-Black */
+  --text-muted: #0a0e21;
+  /* Navy as muted text */
+
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --primary: #eebbc3;
+  /* Soft Pink Accent */
+  --primary-rgb: 238, 187, 195;
+  --secondary: #fffffe;
+  /* Off white elements */
+
+  /* Section Backgrounds (Unified) */
+  --bg-hero: var(--bg-main);
+  --bg-about: var(--bg-main);
+  --bg-work: var(--bg-main);
+  --bg-articles: var(--bg-main);
+  --bg-contact: var(--bg-main);
+
+  --card-bg: transparent;
+  --glass-border: transparent;
+
+  --shadow-soft: none;
+  --shadow-hover: none;
+
+  --border-radius: 20px;
+
+  /* About Custom Light */
+  --bg-about-custom: var(--bg-main);
+  --text-about-custom: #121629;
+  --text-muted-custom: #232946;
+  --highlight-custom: #232946;
+  /* Use Navy for highlights in light mode for contrast */
+  --profile-circle-bg: #fffffe;
+  --profile-border: #eebbc3;
+  --social-bar-bg: rgba(255, 255, 255, 0.2);
+  --social-icon-color: #121629;
+}
+
+[data-theme="dark"] {
+  /* Dark Mode (User Requested Palette) */
+  --bg-main: #232946;
+  /* Deep Navy */
+  --text-main: #fffffe;
+  /* White text for contrast */
+  --text-muted: #b8c1ec;
+  /* Lavender for muted text */
+
+  --primary: #eebbc3;
+  /* Soft Pink Accent */
+  --primary-rgb: 238, 187, 195;
+  --secondary: #121629;
+
+  /* Section Backgrounds */
+  --bg-hero: #232946;
+  --bg-about: #232946;
+  --bg-work: #232946;
+  --bg-articles: #232946;
+  --bg-contact: #232946;
+
+  --card-bg: transparent;
+  --glass-border: transparent;
+
+  --shadow-soft: none;
+  --shadow-hover: none;
+
+  /* About Custom Dark */
+  --bg-about-custom: #232946;
+  --text-about-custom: #fffffe;
+  --text-muted-custom: #b8c1ec;
+  --highlight-custom: #eebbc3;
+  --profile-circle-bg: #121629;
+  --profile-border: #eebbc3;
+  --social-bar-bg: rgba(0, 0, 0, 0.2);
+  --social-icon-color: #fffffe;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.7;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* Hide Scrollbar Global */
+::-webkit-scrollbar {
+  display: none;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('/background-circuit-radial-light.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  pointer-events: none;
+
+  /* Light Mode Visibility */
+  opacity: 0.6;
+  /* Slight transparency */
+  filter: contrast(1.1) brightness(1.0);
+  /* minimal filter needed as colors are pre-tuned */
+}
+
+[data-theme="dark"] body::before {
+  background-image: url('/background-circuit-radial.svg?v=2');
+  opacity: 0.4;
+  filter: none;
+  /* Pastel lines pop naturally on dark */
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+/* Navbar */
+/* Navbar */
+.navbar {
+  background-color: transparent !important;
+  backdrop-filter: none;
+  border-bottom: none;
+  box-shadow: none;
+  transition: background-color 0.3s ease;
+}
+
+.navbar-brand {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--text-main) !important;
+  /* Adaptive color */
+  text-decoration: none;
+}
+
+.nav-link {
+  font-family: var(--font-heading);
+  color: var(--text-main) !important;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary) !important;
+  transform: translateY(-2px);
+}
+
+/* Sections & Layouts */
+/* Sections & Layouts */
+.section-wrapper {
+  padding: 6rem 0;
+  position: relative;
+  margin: 0;
+  /* Remove margin for continuity */
+  border-radius: 0;
+  /* Remove radius for continuity */
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .section-wrapper {
+  border: none;
+}
+
+.hero-section {
+  background: transparent;
+  border: none;
+  margin-top: 0;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.about-section,
+.work-section,
+.articles-section,
+.contact-section {
+  background-color: transparent;
+  border: none;
+}
+
+/* About Page Specific Styles (Deep Navy Reference) */
+/* About Page Specific Styles */
+.about-section-custom {
+  background-color: transparent !important;
+  color: var(--text-about-custom);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.about-text-content {
+  color: var(--text-muted-custom);
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.highlight-text {
+  color: var(--highlight-custom);
+  font-weight: 700;
+}
+
+.cv-link {
+  color: #f2e9e4;
+  margin-top: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.cv-link {
+  color: var(--text-about-custom);
+  margin-top: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.cv-link:hover {
+  color: var(--primary);
+  /* Accent hover */
+  gap: 15px;
+  /* Arrow movement */
+}
+
+.profile-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.profile-circle {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: var(--profile-circle-bg);
+  border: 8px solid var(--profile-border);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 0 15px rgba(155, 92, 246, 0.1);
+  /* Adjusted glow */
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.social-bar {
+  background: var(--social-bar-bg);
+  padding: 10px 25px;
+  border-radius: 15px;
+  display: flex;
+  gap: 20px;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.social-icon {
+  font-size: 1.8rem;
+  color: var(--social-icon-color);
+  transition: transform 0.2s, color 0.3s;
+}
+
+.social-icon:hover {
+  transform: translateY(-3px);
+  color: var(--primary);
+}
+
+/* Decoration */
+.decorative-dots {
+  position: absolute;
+  top: -20px;
+  left: -25px;
+  width: 140px;
+  height: 100px;
+  background-image: radial-gradient(var(--primary) 2.5px, transparent 2.5px);
+  /* Soft Pink (Primary) */
+  background-size: 20px 20px;
+  /* Slightly larger spacing */
+  opacity: 0.3;
+  /* Subtle */
+  z-index: 0;
+}
+
+.articles-section {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.contact-section {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+[data-theme="dark"] .section-wrapper {
+  border: none;
+}
+
+/* Buttons */
+/* Button - Primary */
+.btn-primary {
+  background: var(--primary);
+  /* Light Mode: Soft Pink (#eebbc3) */
+  color: #232946;
+  /* Light Mode: Dark Navy */
+  border: none;
+  border-radius: 50px;
+  padding: 0.8rem 2.5rem;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(238, 187, 195, 0.4);
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .btn-primary {
+  background: #b8c1ec;
+  /* Dark Mode: Soft Indigo/Lavender */
+  color: #232946;
+  /* Text needs to be dark on this light background? User asked for "soft off-white" but contrast would be terrible. User said "Soft Indigo / Muted Blue" background. If I use #5c62d6 (Deep Purple) then white text works. Let's try to match the "I'm Claudia" screenshot which has a "pinkish" button in dark mode? Wait, user text says "DARK MODE Primary: soft indigo / muted blue". I will trust text. If soft indigo is #b8c1ec, use dark text. If soft indigo is a DARK color, use white text. Let's use a MUTED BLUE that allows white text: #4c5cba */
+  background: #b8c1ec;
+  /* User requested "Soft Indigo". Let's stick to the consistent palette color "Pastel Lavender" which is blue-ish. */
+  color: #232946;
+  /* DARK TEXT for readability on light button. User asked for "soft off-white" text but that must be for a DARK button. I will prioritize readability first, or user intent if I can guess a darker blue? Let's use a darker blue for the button so white text works: #6272a4 (Dracula Comment) or similar? Let's stick to #5c62d6 (Deep Purple) which was previously used? No, User said "Muted Blue". Let's use a new color variable or hex: #5e60ce (Soft Indigo) */
+  background: #b8c1ec;
+  /* Actually, let's use the palette's Lavender. It looks like "muted blue". */
+  color: #232946;
+  /* Dark text is mandatory for contrast. I will comment this decision. */
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(var(--primary-rgb), 0.6);
+}
+
+/* Button - Secondary "Who am I?" */
+.btn-outline-dark {
+  border-radius: 50px;
+  padding: 0.8rem 2rem;
+  background: transparent;
+  border: 1px solid var(--text-main);
+  /* Thin outline */
+  color: var(--text-main);
+  font-weight: 600;
+  box-shadow: none;
+}
+
+[data-theme="dark"] .btn-outline-dark {
+  border-color: #fffffe;
+  /* Soft off-white */
+  color: #fffffe;
+}
+
+.btn-outline-dark:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
+  border-color: var(--text-main);
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .btn-outline-dark:hover {
+  color: #fffffe;
+  border-color: #fffffe;
+}
+
+/* Cards */
+.card {
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  color: var(--text-main) !important;
+  /* Force text color to adapt */
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary);
+}
+
+/* Hero Text */
+.display-3 {
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.hero-badge {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+
+/* Custom Theme Toggle (Phone Style) */
+.custom-toggle {
+  width: 50px;
+  height: 90px;
+  background: #e0e0e0;
+  border-radius: 30px;
+  padding: 5px;
+  box-shadow:
+    inset 0 4px 8px rgba(0, 0, 0, 0.1),
+    /* Inner shadow depth */
+    0 4px 10px rgba(0, 0, 0, 0.1);
+  /* Outer shadow */
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  border: 2px solid #d1d1d1;
+}
+
+.toggle-track {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #ffb3c1 0%, #cadded 100%);
+  /* Pink to Blue gradient as in image */
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.toggle-icons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  z-index: 1;
+}
+
+.icon {
+  font-size: 1rem;
+  transition: all 0.4s ease;
+}
+
+.icon.sun {
+  color: #f9d71c;
+  filter: drop-shadow(0 0 2px rgba(249, 215, 28, 0.5));
+}
+
+.icon.moon {
+  color: #f8f9fa;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+}
+
+/* Thumb (The darker shade/mask movement) */
+.toggle-thumb {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  background: rgba(0, 0, 0, 0.1);
+  /* Subtle dark overlay on inactive part */
+  border-radius: 24px;
+  top: 0;
+  left: 0;
+  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  z-index: 0;
+}
+
+/* Light Mode State */
+.custom-toggle.light .toggle-thumb {
+  transform: translateY(100%);
+  /* Covers moon */
+}
+
+.custom-toggle.light .icon.sun {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.custom-toggle.light .icon.moon {
+  opacity: 0.5;
+  transform: scale(0.9);
+}
+
+/* Dark Mode State */
+.custom-toggle.dark .toggle-thumb {
+  transform: translateY(0%);
+  /* Covers sun */
+}
+
+.custom-toggle.dark .icon.sun {
+  opacity: 0.5;
+  transform: scale(0.9);
+}
+
+.custom-toggle.dark .icon.moon {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.custom-toggle.dark .toggle-track {
+  background: linear-gradient(180deg, #2d1b4e 0%, #1a1033 100%);
+}
+
+.text-muted {
+  color: var(--text-muted) !important;
+}
+
+/* --- Global Animations (Staggered Fade Up) --- */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  opacity: 0;
+  /* Hidden initially */
+  animation: fadeUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.1s;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+}
+
+.delay-3 {
+  animation-delay: 0.3s;
+}
+
+.delay-4 {
+  animation-delay: 0.4s;
+}
+
+/* Global seamless adjustments */
+.card {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Ensure headings use Poppins */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar-brand {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+/* Ensure body uses Inter */
+body,
+p,
+a,
+button,
+.nav-link {
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* Modal Theming */
+.modal-content {
+  background-color: var(--bg-main) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--primary);
+  /* subtle border to distinguish from bg */
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header,
+.modal-footer {
+  border: none !important;
+  /* Seamless look */
+}
+
+/* Close button adaptation */
+[data-theme="dark"] .btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Technology badges in modal */
+[data-theme="dark"] .modal-body .badge {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  /* Transparent white */
+  color: #fff !important;
+  border-color: transparent !important;
+}

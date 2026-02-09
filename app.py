@@ -92,15 +92,23 @@ def contact():
         return jsonify({"message": f"Failed to send message: {str(e)}", "success": False}), 500
 
 # Serve React App
+# Serve React App
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve(path):
+    if path == "":
+        return "Backend is running successfully 🚀"
     # Check if the path refers to a static file that exists
     if path != "" and os.path.exists(app.static_folder + '/' + path):
         return send_from_directory(app.static_folder, path)
     else:
         # Otherwise, serve index.html (client-side routing support)
-        return send_from_directory(app.static_folder, 'index.html')
+        # Verify index.html exists before trying to serve it
+        if os.path.exists(app.static_folder + '/index.html'):
+             return send_from_directory(app.static_folder, 'index.html')
+        else:
+             return "Frontend not built or not found", 404
 
 if __name__ == '__main__':
-    app.run(use_reloader=True, port=5000, threaded=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)

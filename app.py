@@ -96,18 +96,10 @@ def contact():
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve(path):
-    if path == "":
-        return "Backend is running successfully 🚀"
-    # Check if the path refers to a static file that exists
     if path != "" and os.path.exists(app.static_folder + '/' + path):
         return send_from_directory(app.static_folder, path)
     else:
-        # Otherwise, serve index.html (client-side routing support)
-        # Verify index.html exists before trying to serve it
-        if os.path.exists(app.static_folder + '/index.html'):
-             return send_from_directory(app.static_folder, 'index.html')
-        else:
-             return "Frontend not built or not found", 404
+        return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))

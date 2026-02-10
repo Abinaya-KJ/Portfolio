@@ -18,7 +18,8 @@ const Work = () => {
     const handleCloseModal = () => setShowModal(false);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/projects')
+        const apiUrl = import.meta.env.VITE_API_URL || 'https://portfolio-f591.onrender.com';
+        fetch(`${apiUrl}/api/projects`)
             .then(res => res.json())
             .then(data => {
                 setProjects(data);

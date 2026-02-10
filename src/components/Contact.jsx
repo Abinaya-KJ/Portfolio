@@ -17,7 +17,8 @@ const Contact = () => {
             message: form.current.message.value
         };
 
-        fetch('http://localhost:5000/api/contact', {
+        const apiUrl = import.meta.env.VITE_API_URL || 'https://portfolio-f591.onrender.com';
+        fetch(`${apiUrl}/api/contact`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

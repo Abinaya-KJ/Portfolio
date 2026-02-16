@@ -9,10 +9,7 @@ const Contact = () => {
                 <Row className="justify-content-center text-center">
                     <Col lg={8}>
                         <h6 className="text-uppercase tracking-wide mb-3 text-muted">Get In Touch</h6>
-                        <h2 className="display-5 fw-bold mb-4">Let's Connect</h2>
-                        <p className="lead mb-5 text-muted">
-                            I'm currently available for freelance work and open to new opportunities.
-                        </p>
+                        <h2 className="display-5 fw-bold mb-5">Let's Connect</h2>
                     </Col>
                 </Row>
                 <Row className="justify-content-center">

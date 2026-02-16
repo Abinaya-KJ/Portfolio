@@ -46,21 +46,33 @@ def get_projects():
 
 @app.route('/api/contact', methods=['POST'])
 def contact():
-    data = request.json
+    data = request.get_json()
+
+    if not data:
+        return jsonify({
+            "success": False,
+            "message": "Invalid JSON data"
+        }), 400
+
     name = data.get('name')
     email = data.get('email')
     message = data.get('message')
 
     if not all([name, email, message]):
-        return jsonify({"message": "All fields are required", "success": False}), 400
+        return jsonify({
+            "success": False,
+            "message": "All fields are required"
+        }), 400
 
-    # Email Configuration
     sender_email = os.environ.get('EMAIL_USER')
     sender_password = os.environ.get('EMAIL_PASS')
     recipient_email = "jabinaya034@gmail.com"
 
     if not sender_email or not sender_password:
-        return jsonify({"message": "Server misconfiguration: Email credentials missing", "success": False}), 500
+        return jsonify({
+            "success": False,
+            "message": "Email credentials missing"
+        }), 500
 
     try:
         # Create MIME object
@@ -70,26 +82,30 @@ def contact():
         msg['Subject'] = f"New Contact Form Message from {name}"
         
         body = f"""
-        You have received a new message from your portfolio contact form.
-        
-        Name: {name}
-        Email: {email}
-        
-        Message:
-        {message}
-        """
+Name: {name}
+Email: {email}
+
+Message:
+{message}
+"""
         msg.attach(MIMEText(body, 'plain'))
 
         # Connect to Gmail SMTP (SSL)
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465, timeout=10) as server:
             server.login(sender_email, sender_password)
             server.send_message(msg)
             
-        return jsonify({"message": "Message sent successfully!", "success": True}), 200
+        return jsonify({
+            "success": True,
+            "message": "Message sent successfully"
+        }), 200
 
     except Exception as e:
-        print(f"Error sending email: {e}")
-        return jsonify({"message": f"Failed to send message: {str(e)}", "success": False}), 500
+        print("EMAIL ERROR:", e)
+        return jsonify({
+            "success": False,
+            "message": str(e)
+        }), 500
 
 # Serve React App
 # Serve React App

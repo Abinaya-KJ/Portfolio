@@ -648,3 +648,65 @@ button,
   color: #fff !important;
   border-color: transparent !important;
 }
+
+/* Contact Section Glassmorphism */
+.contact-card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme="dark"] .contact-card {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .contact-card:hover {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.contact-link {
+  color: var(--text-main);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+}
+
+.contact-link:hover {
+  color: var(--primary);
+  background: rgba(var(--primary-rgb), 0.1);
+  transform: scale(1.05);
+}
+
+.icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  margin-bottom: 0.5rem;
+}
+
+[data-theme="dark"] .icon-box {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.contact-link:hover .icon-box {
+  background: var(--primary);
+  color: #232946;
+  /* Contrast text on primary */
+  transform: rotate(10deg);
+  box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.5);
+}

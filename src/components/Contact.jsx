@@ -23,7 +23,9 @@ const Contact = () => {
                             </h5>
 
                             <div className="d-flex flex-wrap justify-content-center gap-4 gap-md-5 mt-4">
-                                <a href="mailto:jabinaya034@gmail.com" className="contact-link d-flex flex-column align-items-center gap-2 text-decoration-none">
+                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jabinaya034@gmail.com"
+                                    target="_blank" rel="noreferrer"
+                                    className="contact-link d-flex flex-column align-items-center gap-2 text-decoration-none">
                                     <div className="icon-box">
                                         <FaEnvelope size={30} />
                                     </div>

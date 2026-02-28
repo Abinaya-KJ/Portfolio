@@ -39,7 +39,7 @@ const About = () => {
                             <div className="profile-circle">
                                 {/* Placeholder for user image - using a generic avatar for now */}
                                 <img
-                                    src="/profile.png"
+                                    src="https://personalbobby55.s3.us-east-1.amazonaws.com/profile.png"
                                     alt="Profile"
                                     className="profile-img"
                                 />

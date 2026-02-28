@@ -1,10 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Card, Modal, Button } from 'react-bootstrap';
 import { FaGithub } from 'react-icons/fa';
 
+const projects = [
+    {
+        id: 1,
+        title: "Image-Based Classification of Fruit Ripening Stages",
+        category: "Machine Learning",
+        description: "This project uses machine learning and image processing to classify different stages of fruit ripening based on images.",
+        color: "#ffe5ec",
+        isInteractive: true,
+        image: "https://personalbobby55.s3.us-east-1.amazonaws.com/fruit-ripening-stages.png",
+        githubUrl: "https://github.com/Abinaya-KJ",
+        technologies: ['Python', 'Machine Learning', 'Image Processing', 'PyTorch', 'CNN', 'YOLOv8', 'TensorFlow', 'NumPy', 'Pandas']
+    },
+    {
+        id: 2,
+        title: "Market Basket Analysis",
+        category: "DATA ANALYTICS",
+        description: "Market Basket Analysis using the Apriori algorithm to identify frequent itemsets and purchasing patterns.",
+        color: "#e0c3fc",
+        isInteractive: true,
+        image: "https://personalbobby55.s3.us-east-1.amazonaws.com/market-basket-analysis.png",
+        githubUrl: "https://github.com/Abinaya-KJ",
+        technologies: ['Python', 'Data Analytics', 'Apriori Algorithm', 'Association Rule Mining', 'Pandas', 'NumPy', 'Mlxtend']
+    }
+];
+
 const Work = () => {
-    const [projects, setProjects] = useState([]);
-    const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false);
     const [selectedProject, setSelectedProject] = useState(null);
 
@@ -16,28 +39,6 @@ const Work = () => {
     };
 
     const handleCloseModal = () => setShowModal(false);
-
-    useEffect(() => {
-        const apiUrl = import.meta.env.VITE_API_URL || 'https://portfolio-f591.onrender.com';
-        fetch(`${apiUrl}/api/projects`)
-            .then(res => res.json())
-            .then(data => {
-                setProjects(data);
-                setLoading(false);
-            })
-            .catch(err => {
-                console.error("Error fetching projects:", err);
-                setLoading(false);
-            });
-    }, []);
-
-    if (loading) {
-        return (
-            <section id="work" className="section-padding text-center">
-                <p className="text-muted">Loading projects...</p>
-            </section>
-        );
-    }
 
     return (
         <section id="work" className="section-wrapper work-section">

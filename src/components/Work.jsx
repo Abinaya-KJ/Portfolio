@@ -1,132 +1,113 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Card, Modal, Button } from 'react-bootstrap';
-import { FaGithub } from 'react-icons/fa';
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 const projects = [
     {
         id: 1,
         title: "Image-Based Classification of Fruit Ripening Stages",
         category: "Machine Learning",
-        description: "This project uses machine learning and image processing to classify different stages of fruit ripening based on images.",
-        color: "#ffe5ec",
-        isInteractive: true,
+        description: "An automated system leveraging machine learning and computer vision to classify different stages of fruit ripening based on image analysis.",
         image: "https://personalbobby55.s3.us-east-1.amazonaws.com/fruit-ripening-stages.png",
         githubUrl: "https://github.com/Abinaya-KJ",
-        technologies: ['Python', 'Machine Learning', 'Image Processing', 'PyTorch', 'CNN', 'YOLOv8', 'TensorFlow', 'NumPy', 'Pandas']
+        demoUrl: "", // Add if you have a live demo
+        technologies: ['Python', 'CNN', 'YOLOv8', 'PyTorch', 'TensorFlow', 'OpenCV']
     },
     {
         id: 2,
         title: "Market Basket Analysis",
-        category: "DATA ANALYTICS",
-        description: "Market Basket Analysis using the Apriori algorithm to identify frequent itemsets and purchasing patterns.",
-        color: "#e0c3fc",
-        isInteractive: true,
+        category: "Data Analytics",
+        description: "A robust data analytics solution utilizing the Apriori algorithm to uncover hidden purchasing patterns and frequent itemsets in transactional data.",
         image: "https://personalbobby55.s3.us-east-1.amazonaws.com/market-basket-analysis.png",
         githubUrl: "https://github.com/Abinaya-KJ",
-        technologies: ['Python', 'Data Analytics', 'Apriori Algorithm', 'Association Rule Mining', 'Pandas', 'NumPy', 'Mlxtend']
+        demoUrl: "",
+        technologies: ['Python', 'Pandas', 'Apriori Algorithm', 'Data Analytics']
     }
 ];
 
 const Work = () => {
-    const [showModal, setShowModal] = useState(false);
-    const [selectedProject, setSelectedProject] = useState(null);
-
-    const handleCardClick = (project) => {
-        if (project.isInteractive) {
-            setSelectedProject(project);
-            setShowModal(true);
-        }
-    };
-
-    const handleCloseModal = () => setShowModal(false);
-
     return (
         <section id="work" className="section-wrapper work-section">
             <Container>
+                {/* Header Section */}
                 <Row className="mb-5">
                     <Col className="text-center">
-                        <h6 className="text-uppercase tracking-wide" style={{ opacity: 0.7 }}>Portfolio</h6>
-                        <h2 className="display-5 fw-bold">My Projects</h2>
+                        <h6 className="text-uppercase tracking-wide animate-in" style={{ opacity: 0.7 }}>Portfolio</h6>
+                        <h2 className="display-5 fw-bold animate-in delay-1">My Projects</h2>
+                        <p className="text-muted mt-3 mx-auto animate-in delay-2" style={{ maxWidth: '600px' }}>
+                            A selection of my recent work focusing on machine learning, data analytics, and software engineering.
+                        </p>
                     </Col>
                 </Row>
+
+                {/* Projects Grid */}
                 <Row className="g-4 justify-content-center">
-                    {projects.map((project) => (
-                        <Col md={4} key={project.id}>
-                            <Card className="project-card h-100">
-                                <div
-                                    className={`card-img-top d-flex align-items-center justify-content-center ${project.isInteractive ? 'interactive-card' : ''}`}
-                                    style={{
-                                        height: '240px',
-                                        backgroundColor: project.color,
-                                        cursor: project.isInteractive ? 'pointer' : 'default',
-                                        position: 'relative',
-                                        overflow: 'hidden'
-                                    }}
-                                    onClick={() => handleCardClick(project)}
-                                >
+                    {projects.map((project, index) => (
+                        <Col lg={6} md={12} key={project.id} className={`animate-in delay-${(index % 4) + 1}`}>
+                            <div className="modern-project-card">
+                                {/* Thumbnail Header */}
+                                <div className="project-img-container">
                                     {project.image ? (
                                         <img
                                             src={project.image}
                                             alt={project.title}
-                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                            className="project-thumbnail"
+                                            loading="lazy"
                                         />
                                     ) : (
-                                        <span className="text-dark opacity-50 fw-bold">PROJECT PREVIEW</span>
+                                        <div className="w-100 h-100 d-flex align-items-center justify-content-center bg-dark" style={{ opacity: 0.1 }}>
+                                            <span className="text-white opacity-50 fw-bold small">NO IMAGE</span>
+                                        </div>
                                     )}
                                 </div>
-                                <Card.Body className="p-4">
-                                    <small className="text-uppercase fw-bold text-primary" style={{ fontSize: '0.75rem' }}>
-                                        {project.category}
-                                    </small>
-                                    <Card.Title as="h4" className="mt-2 mb-3">{project.title}</Card.Title>
-                                    <Card.Text style={{ opacity: 0.8 }}>
-                                        {project.description}
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
+
+                                {/* Content Body */}
+                                <div className="project-content">
+                                    <h3 className="project-title">{project.title}</h3>
+                                    <p className="project-desc">{project.description}</p>
+
+                                    {/* Technologies */}
+                                    <div className="tech-stack">
+                                        {project.technologies.map((tech, idx) => (
+                                            <span key={idx} className="tech-pill">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    {/* Action Buttons */}
+                                    <div className="project-links">
+                                        {project.githubUrl && (
+                                            <a
+                                                href={project.githubUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="btn-project btn-github"
+                                                aria-label={`View ${project.title} source code on GitHub`}
+                                            >
+                                                <FaGithub /> GitHub
+                                            </a>
+                                        )}
+                                        {project.demoUrl && (
+                                            <a
+                                                href={project.demoUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="btn-project btn-demo"
+                                                aria-label={`View live demo of ${project.title}`}
+                                            >
+                                                <FaExternalLinkAlt size={14} /> Live Demo
+                                            </a>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
                         </Col>
                     ))}
                 </Row>
             </Container>
-
-            {/* Project Details Modal */}
-            <Modal show={showModal} onHide={handleCloseModal} size="lg" centered>
-                <Modal.Header closeButton style={{ borderBottom: 'none' }}>
-                    <Modal.Title className="fw-bold">{selectedProject?.title}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {selectedProject?.image && (
-                        <img
-                            src={selectedProject.image}
-                            alt={selectedProject.title}
-                            className="img-fluid rounded mb-4 w-100"
-                            style={{ maxHeight: '400px', objectFit: 'cover' }}
-                        />
-                    )}
-                    <h5 className="fw-bold mb-3">Project Description</h5>
-                    <p className="text-muted mb-4">{selectedProject?.description}</p>
-
-                    <h5 className="fw-bold mb-3">Technologies Used</h5>
-                    <div className="d-flex gap-2 flex-wrap mb-4">
-                        {(selectedProject?.technologies || []).map((tech, index) => (
-                            <span key={index} className="badge bg-light text-dark border p-2">{tech}</span>
-                        ))}
-                    </div>
-                </Modal.Body>
-                <Modal.Footer style={{ borderTop: 'none' }}>
-                    <Button variant="secondary" onClick={handleCloseModal}>
-                        Close
-                    </Button>
-                    {selectedProject?.githubUrl && (
-                        <Button variant="dark" href={selectedProject.githubUrl} target="_blank">
-                            <FaGithub className="me-2" /> View on GitHub
-                        </Button>
-                    )}
-                </Modal.Footer>
-            </Modal>
         </section>
     );
-
 };
 
 export default Work;

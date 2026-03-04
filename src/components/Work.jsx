@@ -1,27 +1,27 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub, FaArrowRight } from 'react-icons/fa';
 
 const projects = [
     {
         id: 1,
         title: "Image-Based Classification of Fruit Ripening Stages",
-        category: "Machine Learning",
-        description: "An automated system leveraging machine learning and computer vision to classify different stages of fruit ripening based on image analysis.",
+        category: "MACHINE LEARNING",
+        description: "An automated system leveraging machine learning and computer vision to classify different stages of fruit ripening based on image analysis. Accurately predicts freshness states from raw image feeds.",
         image: "https://personalbobby55.s3.us-east-1.amazonaws.com/fruit-ripening-stages.png",
         githubUrl: "https://github.com/Abinaya-KJ",
         demoUrl: "", // Add if you have a live demo
-        technologies: ['Python', 'CNN', 'YOLOv8', 'PyTorch', 'TensorFlow', 'OpenCV']
+        technologies: "Python, CNN, YOLOv8, PyTorch, TensorFlow, OpenCV"
     },
     {
         id: 2,
         title: "Market Basket Analysis",
-        category: "Data Analytics",
-        description: "A robust data analytics solution utilizing the Apriori algorithm to uncover hidden purchasing patterns and frequent itemsets in transactional data.",
+        category: "DATA ANALYTICS",
+        description: "A robust data analytics solution utilizing the Apriori algorithm to uncover hidden purchasing patterns and frequent itemsets from large-scale transactional datasets.",
         image: "https://personalbobby55.s3.us-east-1.amazonaws.com/market-basket-analysis.png",
         githubUrl: "https://github.com/Abinaya-KJ",
         demoUrl: "",
-        technologies: ['Python', 'Pandas', 'Apriori Algorithm', 'Data Analytics']
+        technologies: "Python, Pandas, Apriori Algorithm, Data Analytics"
     }
 ];
 
@@ -29,82 +29,98 @@ const Work = () => {
     return (
         <section id="work" className="section-wrapper work-section">
             <Container>
-                {/* Header Section */}
-                <Row className="mb-5">
-                    <Col className="text-center">
-                        <h6 className="text-uppercase tracking-wide animate-in" style={{ opacity: 0.7 }}>Portfolio</h6>
-                        <h2 className="display-5 fw-bold animate-in delay-1">My Projects</h2>
-                        <p className="text-muted mt-3 mx-auto animate-in delay-2" style={{ maxWidth: '600px' }}>
-                            A selection of my recent work focusing on machine learning, data analytics, and software engineering.
-                        </p>
-                    </Col>
-                </Row>
+                {/* Custom Decorative Header Section */}
+                <div className="d-flex justify-content-between align-items-center mb-5 w-100 position-relative animate-in" style={{ minHeight: '120px' }}>
+                    <div className="d-flex align-items-center position-relative">
+                        {/* Decorative Dots SVG (Left) */}
+                        <svg width="80" height="100" style={{ position: 'absolute', left: '-20px', top: '10px', zIndex: 0 }} xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <pattern id="dotPattern2" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+                                    <circle cx="3" cy="3" r="3" fill="var(--primary)" opacity="0.6" />
+                                </pattern>
+                            </defs>
+                            <rect width="80" height="100" fill="url(#dotPattern2)" />
+                        </svg>
+                        <h2 className="display-3 fw-bold m-0" style={{ fontFamily: "'Poppins', sans-serif", color: "var(--text-main)", position: "relative", zIndex: 2, paddingLeft: '30px', letterSpacing: '-0.02em' }}>
+                            Projects<span style={{ color: "var(--primary)" }}>.</span>
+                        </h2>
+                    </div>
 
-                {/* Projects Grid */}
-                <Row className="g-4 justify-content-center">
+                    {/* Right Decorative Geometric SVG */}
+                    <div className="d-none d-md-block" style={{ marginRight: '10px' }}>
+                        <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                            {/* Pink geometric L-shape */}
+                            <path d="M 60 40 H 100 V 100 H 40 V 60 H 60 Z" fill="var(--primary)" opacity="0.7" />
+                            {/* Outline offset square */}
+                            <rect x="20" y="20" width="60" height="60" fill="none" stroke="var(--text-main)" strokeWidth="2" />
+                            {/* Decorative vertical lines group */}
+                            <g stroke="var(--text-main)" strokeWidth="2">
+                                <line x1="10" y1="80" x2="10" y2="110" />
+                                <line x1="16" y1="80" x2="16" y2="110" />
+                                <line x1="22" y1="80" x2="22" y2="110" />
+                                <line x1="28" y1="80" x2="28" y2="110" />
+                                <line x1="34" y1="80" x2="34" y2="110" />
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                {/* Projects Rendering */}
+                <div className="mt-5">
                     {projects.map((project, index) => (
-                        <Col lg={6} md={12} key={project.id} className={`animate-in delay-${(index % 4) + 1}`}>
-                            <div className="modern-project-card">
-                                {/* Thumbnail Header */}
-                                <div className="project-img-container">
-                                    {project.image ? (
-                                        <img
-                                            src={project.image}
-                                            alt={project.title}
-                                            className="project-thumbnail"
-                                            loading="lazy"
-                                        />
-                                    ) : (
-                                        <div className="w-100 h-100 d-flex align-items-center justify-content-center bg-dark" style={{ opacity: 0.1 }}>
-                                            <span className="text-white opacity-50 fw-bold small">NO IMAGE</span>
-                                        </div>
+                        <div
+                            key={project.id}
+                            className="project-row animate-in"
+                        >
+                            {/* Left: Image Content */}
+                            <div className="project-image-wrapper">
+                                <div className="project-image-glow"></div>
+                                {project.image && (
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        className="project-linear-img"
+                                        loading="lazy"
+                                    />
+                                )}
+                            </div>
+
+                            {/* Right: Text Content */}
+                            <div className="project-text-wrapper">
+                                <span className="project-linear-category">{project.category}</span>
+                                <h3 className="project-linear-title">{project.title}</h3>
+                                <p className="project-linear-desc">{project.description}</p>
+
+                                <p className="project-linear-tools">
+                                    <strong>Tools Used:</strong> <span className="highlight-text">{project.technologies}</span>
+                                </p>
+
+                                <div className="d-flex align-items-center gap-4 mt-4">
+                                    {project.githubUrl && (
+                                        <a
+                                            href={project.githubUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="project-inline-btn"
+                                        >
+                                            <FaGithub /> GitHub Source
+                                        </a>
+                                    )}
+                                    {project.demoUrl && (
+                                        <a
+                                            href={project.demoUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="project-inline-btn"
+                                        >
+                                            Live Demo <FaArrowRight style={{ fontSize: '0.9em' }} />
+                                        </a>
                                     )}
                                 </div>
-
-                                {/* Content Body */}
-                                <div className="project-content">
-                                    <h3 className="project-title">{project.title}</h3>
-                                    <p className="project-desc">{project.description}</p>
-
-                                    {/* Technologies */}
-                                    <div className="tech-stack">
-                                        {project.technologies.map((tech, idx) => (
-                                            <span key={idx} className="tech-pill">
-                                                {tech}
-                                            </span>
-                                        ))}
-                                    </div>
-
-                                    {/* Action Buttons */}
-                                    <div className="project-links">
-                                        {project.githubUrl && (
-                                            <a
-                                                href={project.githubUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="btn-project btn-github"
-                                                aria-label={`View ${project.title} source code on GitHub`}
-                                            >
-                                                <FaGithub /> GitHub
-                                            </a>
-                                        )}
-                                        {project.demoUrl && (
-                                            <a
-                                                href={project.demoUrl}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="btn-project btn-demo"
-                                                aria-label={`View live demo of ${project.title}`}
-                                            >
-                                                <FaExternalLinkAlt size={14} /> Live Demo
-                                            </a>
-                                        )}
-                                    </div>
-                                </div>
                             </div>
-                        </Col>
+                        </div>
                     ))}
-                </Row>
+                </div>
             </Container>
         </section>
     );

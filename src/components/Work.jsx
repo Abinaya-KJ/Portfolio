@@ -8,8 +8,8 @@ const projects = [
         title: "Image-Based Classification of Fruit Ripening Stages",
         category: "MACHINE LEARNING",
         description: "An automated system leveraging machine learning and computer vision to classify different stages of fruit ripening based on image analysis. Accurately predicts freshness states from raw image feeds.",
-        image: "https://personalbobby55.s3.us-east-1.amazonaws.com/fruit-ripening-stages.png",
-        githubUrl: "https://github.com/Abinaya-KJ",
+        image: "/fruit-ripening-stages.png",
+        githubUrl: "https://github.com/Abinaya-KJ/Fruit-ripeness-project",
         demoUrl: "", // Add if you have a live demo
         technologies: "Python, CNN, YOLOv8, PyTorch, TensorFlow, OpenCV"
     },
@@ -18,7 +18,7 @@ const projects = [
         title: "Market Basket Analysis",
         category: "DATA ANALYTICS",
         description: "A robust data analytics solution utilizing the Apriori algorithm to uncover hidden purchasing patterns and frequent itemsets from large-scale transactional datasets.",
-        image: "https://personalbobby55.s3.us-east-1.amazonaws.com/market-basket-analysis.png",
+        image: "/market-basket-analysis.png",
         githubUrl: "https://github.com/Abinaya-KJ",
         demoUrl: "",
         technologies: "Python, Pandas, Apriori Algorithm, Data Analytics"

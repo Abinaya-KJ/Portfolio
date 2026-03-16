@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { FaGithub, FaArrowRight } from 'react-icons/fa';
+import { FaGithub, FaArrowRight, FaPlayCircle } from 'react-icons/fa';
 
 const projects = [
     {
@@ -11,6 +11,7 @@ const projects = [
         image: "/fruit-ripening-stages.png",
         githubUrl: "https://github.com/Abinaya-KJ/Fruit-ripeness-project",
         demoUrl: "", // Add if you have a live demo
+        videoUrl: "https://youtu.be/e4FqQgpxgZo", //my youtube video 
         technologies: "Python, CNN, YOLOv8, PyTorch, TensorFlow, OpenCV"
     },
     {
@@ -19,9 +20,21 @@ const projects = [
         category: "DATA ANALYTICS",
         description: "A robust data analytics solution utilizing the Apriori algorithm to uncover hidden purchasing patterns and frequent itemsets from large-scale transactional datasets.",
         image: "/market-basket-analysis.png",
-        githubUrl: "https://github.com/Abinaya-KJ",
+        githubUrl: "https://github.com/Abinaya-KJ/market-basket-analysis-project",
         demoUrl: "",
+        videoUrl: "",
         technologies: "Python, Pandas, Apriori Algorithm, Data Analytics"
+    },
+    {
+        id: 3,
+        title: "Personal Portfolio Website",
+        category: "WEB DEVELOPMENT",
+        description: "A responsive personal portfolio website developed to showcase my projects, skills, and resume. Built with a modern dark-themed UI and optimized for both desktop and mobile devices.",
+        image: "/portfolio.png",
+        githubUrl: "https://github.com/Abinaya-KJ/portfolio",
+        demoUrl: "",
+        videoUrl: "",
+        technologies: "React.js, HTML, CSS"
     }
 ];
 
@@ -95,7 +108,7 @@ const Work = () => {
                                     <strong>Tools Used:</strong> <span className="highlight-text">{project.technologies}</span>
                                 </p>
 
-                                <div className="d-flex align-items-center gap-4 mt-4">
+                                <div className="d-flex flex-column align-items-start gap-3 mt-4">
                                     {project.githubUrl && (
                                         <a
                                             href={project.githubUrl}
@@ -104,6 +117,16 @@ const Work = () => {
                                             className="project-inline-btn"
                                         >
                                             <FaGithub /> GitHub Source
+                                        </a>
+                                    )}
+                                    {project.videoUrl && (
+                                        <a
+                                            href={project.videoUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="project-inline-btn"
+                                        >
+                                            <FaPlayCircle /> Live Demo
                                         </a>
                                     )}
                                     {project.demoUrl && (

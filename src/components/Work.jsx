@@ -16,6 +16,18 @@ const projects = [
     },
     {
         id: 2,
+        title: "Cloud-Based Document Verification and Expiry Recognition using Machine Learning",
+        category: "MACHINE LEARNING / CLOUD",
+        description: "An intelligent cloud-based system that verifies user documents and automatically detects expiry using machine learning techniques. The system extracts document data, validates authenticity, and sends real-time expiry alerts to users, reducing manual effort and preventing misuse of expired documents.",
+        extraContent: "Includes modules like document upload, data extraction, ML verification, expiry detection, and alert notification system.",
+        image: "/expiry_alert.png",
+        githubUrl: "https://github.com/Abinaya-KJ/expiry-recognition-system",
+        demoUrl: "",
+        videoUrl: "",
+        technologies: "Python(Flask), Machine Learning, Random Forest, Cloud Computing, SQLite"
+    },
+    {
+        id: 3,
         title: "Market Basket Analysis",
         category: "DATA ANALYTICS",
         description: "A robust data analytics solution utilizing the Apriori algorithm to uncover hidden purchasing patterns and frequent itemsets from large-scale transactional datasets.",
@@ -26,7 +38,7 @@ const projects = [
         technologies: "Python, Pandas, Apriori Algorithm, Data Analytics"
     },
     {
-        id: 3,
+        id: 4,
         title: "Personal Portfolio Website",
         category: "WEB DEVELOPMENT",
         description: "A responsive personal portfolio website developed to showcase my projects, skills, and resume. Built with a modern dark-themed UI and optimized for both desktop and mobile devices.",
@@ -88,13 +100,15 @@ const Work = () => {
                             {/* Left: Image Content */}
                             <div className="project-image-wrapper">
                                 <div className="project-image-glow"></div>
-                                {project.image && (
+                                {project.image ? (
                                     <img
                                         src={project.image}
                                         alt={project.title}
                                         className="project-linear-img"
                                         loading="lazy"
                                     />
+                                ) : (
+                                    <div className="project-linear-img" style={{ width: '400px', maxWidth: '100%' }}></div>
                                 )}
                             </div>
 
@@ -103,6 +117,11 @@ const Work = () => {
                                 <span className="project-linear-category">{project.category}</span>
                                 <h3 className="project-linear-title">{project.title}</h3>
                                 <p className="project-linear-desc">{project.description}</p>
+                                {project.extraContent && (
+                                    <p className="project-linear-desc" style={{ marginTop: '-1rem' }}>
+                                        {project.extraContent}
+                                    </p>
+                                )}
 
                                 <p className="project-linear-tools">
                                     <strong>Tools Used:</strong> <span className="highlight-text">{project.technologies}</span>

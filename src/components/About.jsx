@@ -26,7 +26,7 @@ const About = () => {
                                 I enjoy solving real-world problems through <strong className="highlight-text">Machine learning</strong> and building clean, user-friendly web interfaces.
                             </p>
 
-                            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="cv-link animate-in delay-2">
+                            <a href="/resume.docx" target="_blank" rel="noopener noreferrer" className="cv-link animate-in delay-2">
                                 Download CV <FaArrowRight />
                             </a>
                         </div>
